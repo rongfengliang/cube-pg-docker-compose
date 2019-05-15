@@ -1,0 +1,20 @@
+version: "3"
+services:
+  redis_db:
+    image: redis
+    ports:
+      - "6379"
+  cube:
+    build: ./cube
+    env_file: .env
+    expose:
+      - "4000"
+    volumes:
+      - ./cube/schema:/usr/src/app/schema
+    command: node index.js
+  postgres:
+    image: postgres:9.6.11
+    ports:
+    - "5432:5432"
+    environment:
+    - "POSTGRES_PASSWORD:dalong"
