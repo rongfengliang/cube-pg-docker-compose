@@ -3,12 +3,12 @@ services:
   redis_db:
     image: redis
     ports:
-      - "6379"
+      - "6379:6379"
   cube:
     build: ./cube
     env_file: .env
-    expose:
-      - "4000"
+    ports: 
+    - "4000:4000"
     volumes:
       - ./cube/schema:/usr/src/app/schema
     command: node index.js
